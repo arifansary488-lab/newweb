@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GoWeb | Future-Ready Digital Tools</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        // Using strictly local system fonts for privacy
+                        sans: ['ui-sans-serif', 'system-ui', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', '"Helvetica Neue"', 'Arial', 'sans-serif'],
+                        tech: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', '"Liberation Mono"', '"Courier New"', 'monospace'],
+                    },
+                    colors: {
+                        deep: '#050a14', 
+                        surface: '#0f1623',
+                        surface2: '#1a2236',
+                        'neon-orange': '#FF6B00',
+                        'neon-gold': '#FFD000',
+                        'neon-green': '#00E676',
+                        'neon-blue': '#2979FF',
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Modern Utilities */
+        body {
+            background-color: #050a14;
+            background-image: 
+                radial-gradient(circle at 15% 50%, rgba(255, 107, 0, 0.08), transparent 25%), 
+                radial-gradient(circle at 85% 30%, rgba(41, 121, 255, 0.08), transparent 25%);
+        }
+
+        .glass-panel {
+            background: rgba(15, 22, 35, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Eye-Catchy Text Gradient */
+        .text-gradient-primary {
+            background: linear-gradient(135deg, #FF6B00 0%, #FFD000 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(255, 107, 0, 0.3);
+        }
+        
+        .text-gradient-blue {
+            background: linear-gradient(135deg, #2979FF 0%, #00E676 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Card Hover Glow */
+        .glow-card {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            z-index: 1;
+        }
+        .glow-card::before {
+            content: "";
+            position: absolute;
+            inset: -1px;
+            z-index: -1;
+            background: linear-gradient(45deg, #FF6B00, transparent, #2979FF);
+            border-radius: inherit;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        .glow-card:hover {
+            transform: translateY(-8px);
+        }
+        .glow-card:hover::before {
+            opacity: 1;
+        }
+
+        .nav-link {
+            position: relative;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: #FF6B00;
+            transition: width 0.3s;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+    </style>
+</head>
+<body class="text-slate-200 antialiased font-sans selection:bg-neon-orange selection:text-white">
+
+    <nav class="fixed w-full z-50 top-0 glass-panel border-b-0 border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex-shrink-0 cursor-pointer flex items-center gap-3" onclick="window.scrollTo(0,0)">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-neon-orange to-neon-gold flex items-center justify-center shadow-lg shadow-orange-500/30">
+                        <i class="fa-solid fa-infinity text-white text-xl"></i>
+                    </div>
+                    <span class="text-2xl font-tech font-bold text-white tracking-wide">
+                        GoWeb<span class="text-neon-orange">.in</span>
+                    </span>
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="nav-link text-sm font-medium hover:text-white transition">Home</a>
+                    <a href="#tools" class="nav-link text-sm font-medium hover:text-white transition">Explore Tools</a>
+                    <a href="#features" class="nav-link text-sm font-medium hover:text-white transition">Features</a>
+                </div>
+
+                <div class="hidden md:flex items-center gap-4">
+                    <div class="flex flex-col text-right mr-2">
+                         <span class="text-[10px] uppercase text-gray-400 tracking-widest">Server Location</span>
+                         <span class="text-xs font-bold text-neon-green flex items-center justify-end gap-1"><i class="fa-solid fa-circle text-[6px]"></i> Mumbai, IN</span>
+                    </div>
+                    <a href="#tools" class="bg-gradient-to-r from-neon-orange to-red-500 text-white px-6 py-2.5 rounded-full font-bold shadow-lg shadow-orange-500/20 hover:shadow-orange-500/40 hover:scale-105 transition transform">
+                        Start Building
+                    </a>
+                </div>
+
+                <div class="md:hidden">
+                    <button onclick="toggleMenu()" class="text-white text-2xl"><i class="fa-solid fa-bars-staggered"></i></button>
+                </div>
+            </div>
+        </div>
+        
+        <div id="mobile-menu" class="hidden md:hidden bg-surface2 border-b border-gray-800 absolute w-full">
+            <div class="px-4 py-4 space-y-3">
+                <a href="#home" class="block text-white font-medium">Home</a>
+                <a href="#tools" class="block text-white font-medium">Tools</a>
+                <a href="#" class="block text-neon-orange font-bold mt-4">Get Started</a>
+            </div>
+        </div>
+    </nav>
+
+    <header id="home" class="relative pt-32 pb-24 lg:pt-48 lg:pb-40 overflow-hidden">
+        
+        <div class="absolute top-20 right-0 w-[600px] h-[600px] bg-blue-600/10 rounded-full blur-[120px] animate-pulse-slow pointer-events-none"></div>
+        <div class="absolute bottom-0 left-0 w-[500px] h-[500px] bg-orange-600/10 rounded-full blur-[100px] animate-pulse-slow pointer-events-none"></div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-white/5 mb-8 animate-float">
+                <span class="bg-gradient-to-r from-neon-orange to-red-500 text-white text-[10px] font-bold px-2 py-0.5 rounded">NEW</span>
+                <span class="text-sm text-gray-300">GST Invoice Generator 2.0 is live</span>
+            </div>
+
+            <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold text-white tracking-tight mb-6 leading-tight">
+                Supercharge Your <br />
+                <span class="text-gradient-primary">Digital Workflow</span>
+            </h1>
+            
+            <p class="mt-6 max-w-2xl mx-auto text-xl text-gray-400 mb-12 font-light">
+                The all-in-one workspace for Indian Developers & Creators. <br/>
+                <span class="text-white font-medium">Coding tools, Image processing, and Finance.</span> Zero login required.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row justify-center gap-5">
+                <a href="#tools" class="group relative px-8 py-4 bg-white text-deep font-bold rounded-xl text-lg shadow-[0_0_40px_-10px_rgba(255,255,255,0.3)] hover:shadow-[0_0_60px_-15px_rgba(255,255,255,0.5)] transition overflow-hidden">
+                    <span class="relative z-10 group-hover:text-neon-orange transition-colors">Explore Toolkit <i class="fa-solid fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i></span>
+                </a>
+                
+                <a href="#features" class="px-8 py-4 bg-white/5 border border-white/10 hover:border-neon-orange/50 text-white rounded-xl font-semibold text-lg backdrop-blur-sm transition">
+                    View Features
+                </a>
+            </div>
+
+            <div class="mt-20 border-t border-white/5 pt-10 grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
+                <div>
+                    <h3 class="text-3xl font-bold text-white font-tech">100%</h3>
+                    <p class="text-gray-500 text-sm">Free to Use</p>
+                </div>
+                <div>
+                    <h3 class="text-3xl font-bold text-white font-tech">0ms</h3>
+                    <p class="text-gray-500 text-sm">Server Latency (Client-side)</p>
+                </div>
+                <div>
+                    <h3 class="text-3xl font-bold text-white font-tech">50+</h3>
+                    <p class="text-gray-500 text-sm">Pro Tools</p>
+                </div>
+                <div>
+                    <h3 class="text-3xl font-bold text-white font-tech">1M+</h3>
+                    <p class="text-gray-500 text-sm">Operations/Day</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section id="tools" class="py-24 bg-surface relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="mb-16 text-center md:text-left md:flex justify-between items-end">
+                <div>
+                    <h2 class="text-4xl font-bold text-white mb-2">Featured <span class="text-neon-orange">Utilities</span></h2>
+                    <p class="text-gray-400">Hand-picked tools for the modern Indian creator.</p>
+                </div>
+                <div class="hidden md:flex gap-2">
+                    <button class="px-4 py-2 rounded-lg bg-white/10 text-white text-sm hover:bg-neon-orange hover:text-white transition">All</button>
+                    <button class="px-4 py-2 rounded-lg bg-deep text-gray-400 text-sm border border-white/5 hover:border-neon-orange transition">Dev</button>
+                    <button class="px-4 py-2 rounded-lg bg-deep text-gray-400 text-sm border border-white/5 hover:border-neon-orange transition">Design</button>
+                    <button class="px-4 py-2 rounded-lg bg-deep text-gray-400 text-sm border border-white/5 hover:border-neon-orange transition">Finance</button>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <div class="glow-card bg-surface2 rounded-2xl p-1 border border-white/5">
+                    <div class="bg-deep/50 h-full rounded-xl p-6 backdrop-blur-sm">
+                        <div class="flex justify-between items-start mb-6">
+                            <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-600 to-blue-400 flex items-center justify-center shadow-lg shadow-blue-500/20 text-white text-2xl">
+                                <i class="fa-solid fa-mobile-screen-button"></i>
+                            </div>
+                            <span class="px-3 py-1 rounded-full bg-blue-500/10 text-blue-400 text-xs font-bold border border-blue-500/20 font-tech">DEV</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Web-to-App Simulator</h3>
+                        <p class="text-gray-400 text-sm mb-6 leading-relaxed">Turn your HTML code into a live mobile app preview instantly. Test PWA responsiveness.</p>
+                        <button class="w-full py-3 rounded-xl bg-white/5 border border-white/10 text-white font-semibold hover:bg-blue-600 hover:border-transparent transition flex items-center justify-center gap-2 group">
+                            Launch Tool <i class="fa-solid fa-arrow-right text-xs opacity-0 group-hover:opacity-100 transition-all"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="glow-card bg-surface2 rounded-2xl p-1 border border-white/5">
+                    <div class="bg-deep/50 h-full rounded-xl p-6 backdrop-blur-sm">
+                        <div class="flex justify-between items-start mb-6">
+                            <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-neon-green to-emerald-600 flex items-center justify-center shadow-lg shadow-green-500/20 text-white text-2xl">
+                                <i class="fa-solid fa-file-invoice-dollar"></i>
+                            </div>
+                            <span class="px-3 py-1 rounded-full bg-green-500/10 text-green-400 text-xs font-bold border border-green-500/20 font-tech">BUSINESS</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">GST Invoice Maker</h3>
+                        <p class="text-gray-400 text-sm mb-6 leading-relaxed">Create professional Indian GST invoices with HSN codes. Auto-calculate IGST/CGST/SGST.</p>
+                        <button class="w-full py-3 rounded-xl bg-white/5 border border-white/10 text-white font-semibold hover:bg-neon-green hover:text-black hover:border-transparent transition flex items-center justify-center gap-2 group">
+                            Create Invoice <i class="fa-solid fa-arrow-right text-xs opacity-0 group-hover:opacity-100 transition-all"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="glow-card bg-surface2 rounded-2xl p-1 border border-white/5">
+                    <div class="bg-deep/50 h-full rounded-xl p-6 backdrop-blur-sm">
+                        <div class="flex justify-between items-start mb-6">
+                            <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-purple-600 to-pink-500 flex items-center justify-center shadow-lg shadow-purple-500/20 text-white text-2xl">
+                                <i class="fa-solid fa-wand-magic-sparkles"></i>
+                            </div>
+                            <span class="px-3 py-1 rounded-full bg-purple-500/10 text-purple-400 text-xs font-bold border border-purple-500/20 font-tech">MEDIA</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Smart Image Resizer</h3>
+                        <p class="text-gray-400 text-sm mb-6 leading-relaxed">Resize, crop, and compress images for the web without losing quality. Bulk processing supported.</p>
+                        <button class="w-full py-3 rounded-xl bg-white/5 border border-white/10 text-white font-semibold hover:bg-purple-600 hover:border-transparent transition flex items-center justify-center gap-2 group">
+                            Upload Image <i class="fa-solid fa-arrow-right text-xs opacity-0 group-hover:opacity-100 transition-all"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="glow-card bg-surface2 rounded-2xl p-1 border border-white/5">
+                    <div class="bg-deep/50 h-full rounded-xl p-6 backdrop-blur-sm">
+                        <div class="flex justify-between items-start mb-6">
+                            <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-orange-500 to-red-500 flex items-center justify-center shadow-lg shadow-orange-500/20 text-white text-2xl">
+                                <i class="fa-solid fa-code"></i>
+                            </div>
+                            <span class="px-3 py-1 rounded-full bg-orange-500/10 text-orange-400 text-xs font-bold border border-orange-500/20 font-tech">DEV</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Code Minifier</h3>
+                        <p class="text-gray-400 text-sm mb-6 leading-relaxed">Minify HTML, CSS, and JS to improve page load speed. Essential for high SEO rankings.</p>
+                        <button class="w-full py-3 rounded-xl bg-white/5 border border-white/10 text-white font-semibold hover:bg-orange-600 hover:border-transparent transition flex items-center justify-center gap-2 group">
+                            Minify Code <i class="fa-solid fa-arrow-right text-xs opacity-0 group-hover:opacity-100 transition-all"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="glow-card bg-surface2 rounded-2xl p-1 border border-white/5">
+                    <div class="bg-deep/50 h-full rounded-xl p-6 backdrop-blur-sm">
+                        <div class="flex justify-between items-start mb-6">
+                            <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-cyan-500 to-teal-400 flex items-center justify-center shadow-lg shadow-cyan-500/20 text-white text-2xl">
+                                <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
+                            </div>
+                            <span class="px-3 py-1 rounded-full bg-cyan-500/10 text-cyan-400 text-xs font-bold border border-cyan-500/20 font-tech">TESTING</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Resolution Tester</h3>
+                        <p class="text-gray-400 text-sm mb-6 leading-relaxed">Check how your site looks on iPhone, Pixel, iPad, and Laptop screens simultaneously.</p>
+                        <button class="w-full py-3 rounded-xl bg-white/5 border border-white/10 text-white font-semibold hover:bg-cyan-500 hover:border-transparent transition flex items-center justify-center gap-2 group">
+                            Test Screen <i class="fa-solid fa-arrow-right text-xs opacity-0 group-hover:opacity-100 transition-all"></i>
+                        </button>
+                    </div>
+                </div>
+
+                 <div class="glow-card bg-surface2 rounded-2xl p-1 border border-white/5">
+                    <div class="bg-deep/50 h-full rounded-xl p-6 backdrop-blur-sm">
+                        <div class="flex justify-between items-start mb-6">
+                            <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-pink-500 to-rose-600 flex items-center justify-center shadow-lg shadow-pink-500/20 text-white text-2xl">
+                                <i class="fa-solid fa-indian-rupee-sign"></i>
+                            </div>
+                            <span class="px-3 py-1 rounded-full bg-pink-500/10 text-pink-400 text-xs font-bold border border-pink-500/20 font-tech">FINANCE</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Freelance Rate Calc</h3>
+                        <p class="text-gray-400 text-sm mb-6 leading-relaxed">Calculate your ideal hourly rate based on monthly expenses and tax deductions in India.</p>
+                        <button class="w-full py-3 rounded-xl bg-white/5 border border-white/10 text-white font-semibold hover:bg-pink-600 hover:border-transparent transition flex items-center justify-center gap-2 group">
+                            Calculate <i class="fa-solid fa-arrow-right text-xs opacity-0 group-hover:opacity-100 transition-all"></i>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="py-20 bg-deep relative overflow-hidden">
+        <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-5"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="text-4xl font-bold text-white mb-6">Why top Indian Creators <br /> <span class="text-gradient-blue">Choose GoWeb</span></h2>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 w-10 h-10 rounded-full bg-neon-green/20 flex items-center justify-center mt-1">
+                                <i class="fa-solid fa-check text-neon-green"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="text-xl font-bold text-white">Client-Side Privacy</h4>
+                                <p class="text-gray-400 text-sm mt-1">We don't store your photos or code. Everything processes in your browser memory.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 w-10 h-10 rounded-full bg-neon-blue/20 flex items-center justify-center mt-1">
+                                <i class="fa-solid fa-bolt text-neon-blue"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="text-xl font-bold text-white">Lightning Fast</h4>
+                                <p class="text-gray-400 text-sm mt-1">Built with lightweight vanilla JS and Tailwind. Loads instantly on Jio/4G networks.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 w-10 h-10 rounded-full bg-neon-orange/20 flex items-center justify-center mt-1">
+                                <i class="fa-solid fa-hand-holding-dollar text-neon-orange"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="text-xl font-bold text-white">Completely Free</h4>
+                                <p class="text-gray-400 text-sm mt-1">No monthly subscriptions. We are supported by community donations and minimal ads.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="relative">
+                    <div class="absolute inset-0 bg-gradient-to-r from-neon-orange to-pink-600 blur-3xl opacity-20 rounded-full"></div>
+                    <div class="glass-panel p-8 rounded-2xl border border-white/10 relative">
+                        <div class="flex items-center justify-between mb-6">
+                            <div class="flex items-center gap-3">
+                                <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                                <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                                <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                            </div>
+                            <div class="text-xs text-gray-500 font-tech">console.log</div>
+                        </div>
+                        <div class="font-tech text-sm text-gray-300 space-y-2">
+                            <p><span class="text-pink-500">const</span> <span class="text-blue-400">efficiency</span> = <span class="text-neon-gold">"Maximized"</span>;</p>
+                            <p><span class="text-pink-500">const</span> <span class="text-blue-400">cost</span> = <span class="text-neon-gold">0</span>;</p>
+                            <p class="text-gray-500">// Simulating Indian Developer Workflow...</p>
+                            <p><span class="text-green-400">>> Production Ready!</span> 🚀</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-black border-t border-white/10 pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+                <div class="col-span-1 md:col-span-2">
+                     <span class="text-3xl font-tech font-bold text-white tracking-wide">
+                        GoWeb<span class="text-neon-orange">.in</span>
+                    </span>
+                    <p class="text-gray-500 text-sm mt-4 max-w-sm">
+                        Building the digital infrastructure for the next generation of Indian startups and creators.
+                    </p>
+                </div>
+                
+                <div>
+                    <h4 class="text-white font-bold mb-4">Toolkit</h4>
+                    <ul class="space-y-2 text-sm text-gray-500">
+                        <li><a href="#" class="hover:text-neon-orange transition">Web Simulator</a></li>
+                        <li><a href="#" class="hover:text-neon-orange transition">GST Calculator</a></li>
+                        <li><a href="#" class="hover:text-neon-orange transition">Image Resizer</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-bold mb-4">Connect</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:bg-neon-orange hover:text-white transition"><i class="fa-brands fa-github"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:bg-blue-400 hover:text-white transition"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:bg-pink-600 hover:text-white transition"><i class="fa-brands fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-white/5 pt-8 text-center md:text-left flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-600 text-sm">© 2026 GoWeb India.</p>
+                <div class="flex items-center gap-2 mt-4 md:mt-0">
+                    <span class="text-xs text-gray-600 uppercase tracking-widest">Proudly Made in India</span>
+                    <img src="https://upload.wikimedia.org/wikipedia/en/4/41/Flag_of_India.svg" class="w-5 h-auto opacity-80" alt="India">
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+    </script>
+</body>
+</html>
