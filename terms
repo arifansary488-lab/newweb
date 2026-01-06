@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms & Conditions | GoWeb</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: { colors: { deep: '#050a14', 'neon-orange': '#FF6B00' } }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #050a14; color: #94a3b8; }
+        h1, h2, h3 { color: white; }
+    </style>
+</head>
+<body class="antialiased font-sans">
+
+    <nav class="border-b border-white/10 py-6 mb-12 bg-[#0f1623]">
+        <div class="max-w-4xl mx-auto px-6 flex justify-between items-center">
+            <span class="text-xl font-bold text-white">GoWeb<span class="text-neon-orange">.in</span></span>
+            <a href="../index.html" class="text-sm hover:text-white">Return Home</a>
+        </div>
+    </nav>
+
+    <main class="max-w-3xl mx-auto px-6 pb-24">
+        <h1 class="text-3xl font-bold mb-2">Terms and Conditions</h1>
+        <p class="text-sm text-gray-500 mb-10">Welcome to GoWeb.in</p>
+
+        <div class="space-y-8">
+            <section>
+                <h2 class="text-xl font-bold mb-3">1. Agreement to Terms</h2>
+                <p>By accessing this website, we assume you accept these terms and conditions in full. Do not continue to use GoWeb if you do not accept all of the terms and conditions stated on this page.</p>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-bold mb-3">2. License</h2>
+                <p>Unless otherwise stated, GoWeb and/or its licensors own the intellectual property rights for all material on GoWeb. All intellectual property rights are reserved. You may view and/or print pages from https://goweb.in for your own personal use subject to restrictions set in these terms and conditions.</p>
+            </section>
+
+            <section class="bg-red-500/10 border-l-4 border-red-500 p-6 rounded-r-lg">
+                <h2 class="text-xl font-bold text-red-400 mb-3">3. Disclaimer of Liability (Important)</h2>
+                <p class="text-gray-300">The tools and information provided on this website (including but not limited to GST Calculators, Salary Estimators, and Code Formatters) are provided "AS IS", without warranty of any kind.</p>
+                <br>
+                <p class="text-gray-300 font-bold">We do not accept liability for any loss or damage, including without limitation, indirect or consequential loss or damage, or any loss or damage whatsoever arising from loss of data or profits arising out of, or in connection with, the use of this website.</p>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-bold mb-3">4. User Conduct</h2>
+                <p>You agree not to use this website for any purpose that is unlawful or prohibited by these terms. You may not use the website in any manner that could damage, disable, overburden, or impair the server.</p>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-bold mb-3">5. Updates</h2>
+                <p>We reserve the right to request that you remove all links or any particular link to our Website. We also reserve the right to amend these terms and conditions and its linking policy at any time.</p>
+            </section>
+        </div>
+    </main>
+</body>
+</html>
